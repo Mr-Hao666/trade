@@ -36,9 +36,9 @@ public class SwaggerConfig{
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-            .title("人人开源")
-            .description("renren-admin文档")
-            .termsOfServiceUrl("http://www.renren.io")
+            .title("小楷科技")
+            .description("xktpx-admin文档")
+            .termsOfServiceUrl("http://www.xktpx.com")
             .version("3.2.0")
             .build();
     }

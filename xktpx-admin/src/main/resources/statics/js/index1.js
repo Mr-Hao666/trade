@@ -89,8 +89,7 @@ var vm = new Vue({
                 title: false,
                 area: ['806px', '467px'],
                 closeBtn: 1,
-                shadeClose: false,
-                content: ['http://cdn.renren.io/donate.jpg', 'no']
+                shadeClose: false
             });
         }
     },

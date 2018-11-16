@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>xktpx-admin</artifactId>
 	<packaging>jar</packaging>
-	<description>renren-admin</description>
+	<description>xktpx-admin</description>
 
 	<properties>
 		<quartz.version>2.3.0</quartz.version>
@@ -112,7 +112,7 @@
 				<artifactId>docker-maven-plugin</artifactId>
 				<version>0.4.14</version>
 				<configuration>
-					<imageName>renren/admin</imageName>
+					<imageName>xktpx/admin</imageName>
 					<dockerDirectory>${project.basedir}</dockerDirectory>
 					<resources>
 						<resource>
