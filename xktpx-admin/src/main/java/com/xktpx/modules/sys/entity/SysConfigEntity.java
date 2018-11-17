@@ -2,6 +2,7 @@ package com.xktpx.modules.sys.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotBlank;
  * @email sunlightcs@gmail.com
  * @date 2016年12月4日 下午6:43:36
  */
+@Data
 @TableName("sys_config")
 public class SysConfigEntity {
 	@TableId
@@ -22,33 +24,4 @@ public class SysConfigEntity {
 	private String paramValue;
 	private String remark;
 
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getParamKey() {
-		return paramKey;
-	}
-
-	public void setParamKey(String paramKey) {
-		this.paramKey = paramKey;
-	}
-
-	public String getParamValue() {
-		return paramValue;
-	}
-
-	public void setParamValue(String paramValue) {
-		this.paramValue = paramValue;
-	}
-
-	public String getRemark() {
-		return remark;
-	}
-	public void setRemark(String remark) {
-		this.remark = remark;
-	}
 }
