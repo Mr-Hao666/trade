@@ -3,5 +3,17 @@
 
 <mapper namespace="com.xktpx.modules.sys.dao.SysDictDao">
 
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xktpx.modules.sys.entity.SysDictEntity" id="sysDictMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="code" column="code"/>
+        <result property="value" column="value"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="remark" column="remark"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
 
 </mapper>

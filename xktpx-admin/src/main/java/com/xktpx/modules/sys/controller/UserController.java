@@ -20,14 +20,14 @@ import com.xktpx.common.utils.R;
 
 
 /**
- * 用户
+ * 用户信息表
  *
  * @author chenshun
  * @email sunlightcs@gmail.com
- * @date 2018-11-13 17:31:22
+ * @date 2018-11-21 10:59:48
  */
 @RestController
-@RequestMapping("/sys/tbUser")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -36,7 +36,7 @@ public class UserController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("sys:tbUser:list")
+    @RequiresPermissions("sys:user:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = userService.queryPage(params);
 
@@ -47,10 +47,10 @@ public class UserController {
     /**
      * 信息
      */
-    @RequestMapping("/info/{userId}")
-    @RequiresPermissions("sys:tbUser:info")
-    public R info(@PathVariable("userId") Long userId){
-        UserEntity user = userService.selectById(userId);
+    @RequestMapping("/info/{id}")
+    @RequiresPermissions("sys:user:info")
+    public R info(@PathVariable("id") Long id){
+        UserEntity user = userService.selectById(id);
 
         return R.ok().put("user", user);
     }
@@ -59,7 +59,7 @@ public class UserController {
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("sys:tbUser:save")
+    @RequiresPermissions("sys:user:save")
     public R save(@RequestBody UserEntity user){
         userService.insert(user);
 
@@ -70,7 +70,7 @@ public class UserController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("sys:tbUser:update")
+    @RequiresPermissions("sys:user:update")
     public R update(@RequestBody UserEntity user){
         ValidatorUtils.validateEntity(user);
         userService.updateAllColumnById(user);//全部更新
@@ -82,9 +82,9 @@ public class UserController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("sys:tbUser:delete")
-    public R delete(@RequestBody Long[] userIds){
-        userService.deleteBatchIds(Arrays.asList(userIds));
+    @RequiresPermissions("sys:user:delete")
+    public R delete(@RequestBody Long[] ids){
+        userService.deleteBatchIds(Arrays.asList(ids));
 
         return R.ok();
     }

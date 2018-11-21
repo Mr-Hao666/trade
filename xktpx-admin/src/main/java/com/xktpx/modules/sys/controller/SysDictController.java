@@ -1,25 +1,33 @@
 package com.xktpx.modules.sys.controller;
 
-import com.xktpx.common.utils.PageUtils;
-import com.xktpx.common.utils.R;
-import com.xktpx.common.validator.ValidatorUtils;
-import com.xktpx.modules.sys.entity.SysDictEntity;
-import com.xktpx.modules.sys.service.SysDictService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
 import java.util.Map;
 
+import com.xktpx.common.validator.ValidatorUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.xktpx.modules.sys.entity.SysDictEntity;
+import com.xktpx.modules.sys.service.SysDictService;
+import com.xktpx.common.utils.PageUtils;
+import com.xktpx.common.utils.R;
+
+
+
 /**
- * 数据字典
+ * 数据字典表
  *
- * @author Mark sunlightcs@gmail.com
- * @since 3.1.0 2018-01-27
+ * @author chenshun
+ * @email sunlightcs@gmail.com
+ * @date 2018-11-21 10:59:48
  */
 @RestController
-@RequestMapping("/sys/dict")
+@RequestMapping("sys/sysdict")
 public class SysDictController {
     @Autowired
     private SysDictService sysDictService;
@@ -28,7 +36,7 @@ public class SysDictController {
      * 列表
      */
     @RequestMapping("/list")
-    @RequiresPermissions("sys:dict:list")
+    @RequiresPermissions("sys:sysdict:list")
     public R list(@RequestParam Map<String, Object> params){
         PageUtils page = sysDictService.queryPage(params);
 
@@ -40,23 +48,20 @@ public class SysDictController {
      * 信息
      */
     @RequestMapping("/info/{id}")
-    @RequiresPermissions("sys:dict:info")
+    @RequiresPermissions("sys:sysdict:info")
     public R info(@PathVariable("id") Long id){
-        SysDictEntity dict = sysDictService.selectById(id);
+        SysDictEntity sysDict = sysDictService.selectById(id);
 
-        return R.ok().put("dict", dict);
+        return R.ok().put("sysDict", sysDict);
     }
 
     /**
      * 保存
      */
     @RequestMapping("/save")
-    @RequiresPermissions("sys:dict:save")
-    public R save(@RequestBody SysDictEntity dict){
-        //校验类型
-        ValidatorUtils.validateEntity(dict);
-
-        sysDictService.insert(dict);
+    @RequiresPermissions("sys:sysdict:save")
+    public R save(@RequestBody SysDictEntity sysDict){
+        sysDictService.insert(sysDict);
 
         return R.ok();
     }
@@ -65,13 +70,11 @@ public class SysDictController {
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("sys:dict:update")
-    public R update(@RequestBody SysDictEntity dict){
-        //校验类型
-        ValidatorUtils.validateEntity(dict);
-
-        sysDictService.updateById(dict);
-
+    @RequiresPermissions("sys:sysdict:update")
+    public R update(@RequestBody SysDictEntity sysDict){
+        ValidatorUtils.validateEntity(sysDict);
+        sysDictService.updateAllColumnById(sysDict);//全部更新
+        
         return R.ok();
     }
 
@@ -79,7 +82,7 @@ public class SysDictController {
      * 删除
      */
     @RequestMapping("/delete")
-    @RequiresPermissions("sys:dict:delete")
+    @RequiresPermissions("sys:sysdict:delete")
     public R delete(@RequestBody Long[] ids){
         sysDictService.deleteBatchIds(Arrays.asList(ids));
 

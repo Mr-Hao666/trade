@@ -3,11 +3,22 @@ $(function () {
         url: baseURL + 'sys/user/list',
         datatype: "json",
         colModel: [			
-			{ label: 'userId', name: 'userId', index: 'user_id', width: 50, key: true },
-			{ label: '用户名', name: 'username', index: 'username', width: 80 }, 			
-			{ label: '手机号', name: 'mobile', index: 'mobile', width: 80 }, 			
-			{ label: '密码', name: 'password', index: 'password', width: 80 }, 			
-			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }			
+			{ label: 'id', name: 'id', index: 'id', width: 50, key: true },
+			{ label: '用户名', name: 'name', index: 'name', width: 80 }, 			
+			{ label: '昵称', name: 'nickname', index: 'nickname', width: 80 }, 			
+			{ label: '身份证号码', name: 'idCardNo', index: 'id_card_no', width: 80 }, 			
+			{ label: '电话号码', name: 'phone', index: 'phone', width: 80 }, 			
+			{ label: '登录密码', name: 'loginPwd', index: 'login_pwd', width: 80 }, 			
+			{ label: '头像id', name: 'avatarId', index: 'avatar_id', width: 80 }, 			
+			{ label: '性别 0:未知 1:男 2:女', name: 'gender', index: 'gender', width: 80 }, 			
+			{ label: 'open_id(保留字段)', name: 'openId', index: 'open_id', width: 80 }, 			
+			{ label: 'token(保留字段)', name: 'token', index: 'token', width: 80 }, 			
+			{ label: '是否实名认证 0:未认证 1:认证成功 2:认证失败', name: 'realNameAuthorized', index: 'real_name_authorized', width: 80 }, 			
+			{ label: '最近登录时间', name: 'latestLoginTime', index: 'latest_login_time', width: 80 }, 			
+			{ label: '最近登录ip', name: 'latestLoginIp', index: 'latest_login_ip', width: 80 }, 			
+			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }, 			
+			{ label: '更新时间', name: 'updateTime', index: 'update_time', width: 80 }, 			
+			{ label: '状态 1:正常 2:禁用 3:删除', name: 'curState', index: 'cur_state', width: 80 }			
         ],
 		viewrecords: true,
         height: 385,
@@ -53,17 +64,17 @@ var vm = new Vue({
 			vm.user = {};
 		},
 		update: function (event) {
-			var userId = getSelectedRow();
-			if(userId == null){
+			var id = getSelectedRow();
+			if(id == null){
 				return ;
 			}
 			vm.showList = false;
             vm.title = "修改";
             
-            vm.getInfo(userId)
+            vm.getInfo(id)
 		},
 		saveOrUpdate: function (event) {
-			var url = vm.user.userId == null ? "sys/user/save" : "sys/user/update";
+			var url = vm.user.id == null ? "sys/user/save" : "sys/user/update";
 			$.ajax({
 				type: "POST",
 			    url: baseURL + url,
@@ -81,8 +92,8 @@ var vm = new Vue({
 			});
 		},
 		del: function (event) {
-			var userIds = getSelectedRows();
-			if(userIds == null){
+			var ids = getSelectedRows();
+			if(ids == null){
 				return ;
 			}
 			
@@ -91,7 +102,7 @@ var vm = new Vue({
 					type: "POST",
 				    url: baseURL + "sys/user/delete",
                     contentType: "application/json",
-				    data: JSON.stringify(userIds),
+				    data: JSON.stringify(ids),
 				    success: function(r){
 						if(r.code == 0){
 							alert('操作成功', function(index){
@@ -104,8 +115,8 @@ var vm = new Vue({
 				});
 			});
 		},
-		getInfo: function(userId){
-			$.get(baseURL + "sys/user/info/"+userId, function(r){
+		getInfo: function(id){
+			$.get(baseURL + "sys/user/info/"+id, function(r){
                 vm.user = r.user;
             });
 		},

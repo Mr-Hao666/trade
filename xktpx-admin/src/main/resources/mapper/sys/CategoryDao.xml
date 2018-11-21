@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xktpx.modules.sys.dao.CategoryDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.xktpx.modules.sys.entity.CategoryEntity" id="categoryMap">
+        <result property="id" column="id"/>
+        <result property="pid" column="pid"/>
+        <result property="picId" column="pic_id"/>
+        <result property="name" column="name"/>
+        <result property="sortNo" column="sort_no"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updaetBy" column="updaet_by"/>
+        <result property="updateDate" column="update_date"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+
+</mapper>
