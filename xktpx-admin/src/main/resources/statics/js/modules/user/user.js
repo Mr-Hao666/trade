@@ -9,16 +9,47 @@ $(function () {
 			{ label: '身份证号码', name: 'idCardNo', index: 'id_card_no', width: 80 }, 			
 			{ label: '电话号码', name: 'phone', index: 'phone', width: 80 }, 			
 			{ label: '登录密码', name: 'loginPwd', index: 'login_pwd', width: 80 }, 			
-			{ label: '头像id', name: 'avatarId', index: 'avatar_id', width: 80 }, 			
-			{ label: '性别 0:未知 1:男 2:女', name: 'gender', index: 'gender', width: 80 }, 			
+			{ label: '头像', name: 'avatarId', index: 'avatar_id', width: 80 },
+            { label: '性别', name: 'gender',index:'gender', align: 'center', valign: 'middle', sortable: true, width: 50, formatter: function(value, options ,row){
+                    if(value === 0){
+                        return '<span class="label label-danger">未知</span>';
+                    }
+                    if(value === 1){
+                        return '<span class="label label-success">男</span>';
+                    }
+                    if(value === 2){
+                        return '<span class="label label-success">女</span>';
+                    }
+                }},
 			{ label: 'open_id(保留字段)', name: 'openId', index: 'open_id', width: 80 }, 			
 			{ label: 'token(保留字段)', name: 'token', index: 'token', width: 80 }, 			
-			{ label: '是否实名认证 0:未认证 1:认证成功 2:认证失败', name: 'realNameAuthorized', index: 'real_name_authorized', width: 80 }, 			
+			{ label: '是否实名认证', name: 'realNameAuthorized', index: 'real_name_authorized', width: 80,formatter: function(value, options ,row){
+                    if(value === 0){
+                        return '<span class="label label-danger">未认证</span>';
+                    }
+                    if(value === 1){
+                        return '<span class="label label-success">认证成功</span>';
+                    }
+                    if(value === 2){
+                        return '<span class="label label-danger">认证失败</span>';
+                    }
+                }
+			},
 			{ label: '最近登录时间', name: 'latestLoginTime', index: 'latest_login_time', width: 80 }, 			
 			{ label: '最近登录ip', name: 'latestLoginIp', index: 'latest_login_ip', width: 80 }, 			
 			{ label: '创建时间', name: 'createTime', index: 'create_time', width: 80 }, 			
 			{ label: '更新时间', name: 'updateTime', index: 'update_time', width: 80 }, 			
-			{ label: '状态 1:正常 2:禁用 3:删除', name: 'curState', index: 'cur_state', width: 80 }			
+			{ label: '状态', name: 'curState', index: 'cur_state', width: 80,formatter: function(value, options ,row){
+                    if(value === 1){
+                        return '<span class="label label-success">正常</span>';
+                    }
+                    if(value === 2){
+                        return '<span class="label label-danger">禁用</span>';
+                    }
+                    if(value === 3){
+                        return '<span class="label label-danger">删除</span>';
+                    }
+                }}
         ],
 		viewrecords: true,
         height: 385,

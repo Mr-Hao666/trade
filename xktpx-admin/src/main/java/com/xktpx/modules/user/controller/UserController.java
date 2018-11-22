@@ -27,7 +27,7 @@ import com.xktpx.common.utils.R;
  * @date 2018-11-21 10:59:48
  */
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/user/user")
 public class UserController {
     @Autowired
     private UserService userService;
